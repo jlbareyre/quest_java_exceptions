@@ -16,11 +16,21 @@ public class OddSum {
                 System.out.print(" " + v);
             System.out.println();
         }
-        for (int i = 0; i < args.length; i++) {
-            listInt.add(Integer.parseInt(args[i]));
-        }
 
-        res = sum(listInt);
+
+        try {
+        
+            for (int i = 0; i < args.length; i++) {
+
+                listInt.add(Integer.parseInt(args[i]));
+            }
+        
+            res = sum(listInt);
+            
+        } catch (Exception e) {
+            //Problème pour calculer la somme : on a envoyé un truc pas correct
+            res = -1;;
+        }
         if (test) {
             return res;
         }
@@ -34,10 +44,16 @@ public class OddSum {
     public static int sum(ArrayList<Integer> listInt) {
 
         int result = 0;
-        for (int value : listInt) {
-            if (value % 2 != 0) {
-                result += value;
+
+        try {
+            for (int value : listInt) {
+                if (value % 2 != 0) {
+                    result += value;
+                }
             }
+        } catch (Exception e) {
+            //Y'a quelquechose qui s'est mal passé ?! On renvoie -1 dans le doute
+            result = -1;
         }
         return result;
     }
